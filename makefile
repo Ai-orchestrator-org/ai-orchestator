@@ -1,6 +1,6 @@
 start-mcp:
 	@echo "Starting Click up MCP..."
-	@cd clickup && pnpm install && pnpm start
+	@cd click-up-mcp && pnpm install && pnpm start
 
 
 start-core:
