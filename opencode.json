@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp":{
+    "clickUp":{
+
+      "type": "remote",
+      "url": "http://localhost:3000/mcp"
+    }
+
+  }
+}

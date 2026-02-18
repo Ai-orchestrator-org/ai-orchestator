@@ -1,425 +1,131 @@
 
-# Product Requirements Document (PRD)
 
-# FitTech – Connected Gym Management System
+# Product Requirement Document
 
----
+## Introduction
 
-## 1. Document Information
+This project aims to design and implement a digital food donation platform that connects donors, beneficiaries, and local communities to reduce food waste. The platform enables secure user management, donation listings with geolocation, real-time communication, reputation-based trust, and analytical dashboards. The scope includes web, mobile, and backend systems developed using modern frameworks and an agile Scrum process.
 
-* **Product Name:** FitTech
-* **Product Type:** Connected Gym Management System
-* **Institution:** École Supérieure en Informatique
-* **Project Supervisors:**
+## Technologies Used
 
-  * Amar Bensaber
-  * Bedjaoui Mohamed
-  * Klouche Badia
-  * Nemdili Amel
+* Backend: NestJS with GraphQL
+* Frontend: React
+* Mobile: Flutter
 
----
+## Features & Requirements
 
-## 2. Product Overview
+### Feature 1: User Management & Roles
 
-FitTech is a fully integrated management system for a modern connected gym. The platform consists of:
+* **Description:**
+  Secure user registration, authentication, profile management, and role-based access control for all platform actors.
+* **Acceptance Criteria:**
 
-* A **mobile application** for members
-* A **web interface** for coaches and administrators
-* A **connected infrastructure layer** (NFC readers, sensors, connected machines)
+  * Users can register and authenticate securely.
+  * Profiles can be created, viewed, and updated.
+  * Roles (Donor, Beneficiary, Administrator, Food Saver, Local Authority) are enforced via RBAC.
+* **User Stories:**
 
-The system enables subscription management, course reservations, activity tracking, staff management, notifications, equipment monitoring, and product sales.
+  * As a user, I want to register and log in securely so that my data is protected.
+  * As an admin, I want to manage user roles to control platform access.
 
----
+### Feature 2: Donation Listings Management
 
-## 3. Objectives
+* **Description:**
+  Creation and management of food donation announcements with detailed metadata.
+* **Acceptance Criteria:**
 
-* Digitize gym operations end-to-end
-* Improve member engagement and retention
-* Provide personalized training insights
-* Automate administrative processes
-* Enable real-time activity and equipment tracking
-* Increase revenue via subscriptions and product sales
+  * Donors can publish donations with photos, category, quantity, expiration date, and location.
+  * Beneficiaries can search and filter donations by distance, category, and urgency.
+  * Reservations require donor confirmation within 2 hours.
+* **User Stories:**
 
----
+  * As a donor, I want to publish a donation so others can reserve it.
+  * As a beneficiary, I want to filter donations near me.
 
-## 4. Target Users
+### Feature 3: Chat & Reservation System
 
-### 4.1 Members
+* **Description:**
+  Secure real-time chat to coordinate donation pickup after reservation.
+* **Acceptance Criteria:**
 
-* Subscribe to gym plans
-* Book and manage courses
-* Track performance and progress
-* Communicate with coaches
-* Purchase products
+  * Chat is only available after a reservation is initiated.
+  * Messages are stored securely and moderated automatically.
+* **User Stories:**
 
-### 4.2 Coaches
+  * As a beneficiary, I want to chat with the donor to arrange pickup details.
 
-* Manage courses and schedules
-* Track member attendance
-* Access health profiles
-* Communicate with members
+### Feature 4: Community, Reputation & Gamification
 
-### 4.3 Administrators
+* **Description:**
+  A reputation system to build trust and encourage engagement.
+* **Acceptance Criteria:**
 
-* Manage members, coaches, and subscriptions
-* Monitor financial and operational performance
-* Generate reports
-* Oversee equipment and product sales
+  * Users earn points and badges based on activity.
+  * Monthly leaderboards are generated.
+  * “Food Savers” can validate new users.
+* **User Stories:**
 
----
+  * As an active user, I want to earn badges to reflect my contributions.
 
-## 5. Product Scope
+### Feature 5: Mapping & Matching Engine
 
-### 5.1 Platforms
+* **Description:**
+  Interactive map showing nearby donations and intelligent matching.
+* **Acceptance Criteria:**
 
-| Platform       | Users           | Purpose                          |
-| -------------- | --------------- | -------------------------------- |
-| Mobile App     | Members         | Booking, tracking, communication |
-| Web Interface  | Coaches, Admins | Management & reporting           |
-| Hardware Layer | All             | NFC access & connected tracking  |
+  * Donations are displayed on a map with color codes (green/orange/red).
+  * Users receive push notifications based on preferences and proximity.
+* **User Stories:**
 
----
+  * As a user, I want to see nearby donations on a map in real time.
 
-## 6. Functional Requirements
+### Feature 6: Security, Trust & Moderation
 
----
+* **Description:**
+  Mechanisms to ensure safety, quality, and trust across the platform.
+* **Acceptance Criteria:**
 
-## 6.1 Member & Subscription Management
+  * Users can report unsafe donations or behavior.
+  * Automated chat moderation detects forbidden content.
+  * Safety checklists are enforced for sensitive products.
+* **User Stories:**
 
-### 6.1.1 Member Registration
+  * As a user, I want to report unsafe content to keep the platform reliable.
 
-**The system shall allow:**
+### Feature 7: Web Dashboard & Analytics
 
-* Creation of new member accounts
-* Collection of:
+* **Description:**
+  Administrative dashboard for monitoring platform impact and usage.
+* **Acceptance Criteria:**
 
-  * First name
-  * Last name
-  * Date of birth
-  * Email
-  * Phone number
-  * Profile photo
-* Subscription selection
-* Payment:
-
-  * Online
-  * On-site
-
----
-
-### 6.1.2 Subscription Types
-
-| Type        | Description                                      |
-| ----------- | ------------------------------------------------ |
-| Monthly     | Auto-renewable, cancel anytime                   |
-| Annual      | 12-month commitment, full or installment payment |
-| Per Session | Purchase session packs (e.g., 10 entries)        |
-| Free Trial  | 1 session                                        |
-
----
-
-### 6.1.3 Health Profile
-
-Members may optionally define:
-
-* Goals:
-
-  * Weight loss
-  * Muscle gain
-  * Endurance
-* Medical restrictions:
-
-  * Back problems
-  * Allergies
-  * Other conditions
-
-**Visibility:** Accessible by coaches for adaptation purposes.
-
----
-
-### 6.1.4 Member Dashboard
-
-Members shall be able to:
-
-* View personal information
-* View session history
-* View invoices
-* Pause subscription (max 2 months per year, medical reasons)
-
----
-
-## 6.2 Course Reservation System
-
-### 6.2.1 Course Creation (Coach)
-
-Coaches shall define:
-
-* Course type (e.g., Spinning, CrossFit)
-* Max participants
-* Date & time
-* Duration
-* Required level
-
----
-
-### 6.2.2 Booking Rules
-
-* Members can reserve up to **7 days in advance**
-* If full:
-
-  * Member can join waiting list
-  * Automatic enrollment on cancellation
-  * Automatic notification
-
----
-
-### 6.2.3 Cancellation Policy
-
-* Allowed up to **2 hours before course**
-* After deadline:
-
-  * Session deducted from subscription/pack
-  * Member notified
-
----
-
-### 6.2.4 Attendance Management
-
-* Coach validates attendance via tablet
-* If absent without cancellation:
-
-  * Warning issued
-  * After 3 warnings → Account suspended for 1 week
-
----
-
-## 6.3 Access & Activity Tracking
-
-### 6.3.1 Performance Dashboard
-
-The mobile app shall display:
-
-* Sessions per week
-* Calories burned
-* Goal progress
-* Personalized recommendations
-
----
-
-### 6.3.2 Connected Infrastructure
-
-* NFC-based access control
-* Machine activity tracking
-* Sensor-based performance data collection
-
----
-
-## 6.4 Staff Management
-
----
-
-### 6.4.1 Coach Management
-
-Each coach profile includes:
-
-* Name
-* Photo
-* Specialties
-* Biography
-
-Coaches can:
-
-* Manage schedule
-* Create courses
-* Access member health profiles
-
----
-
-### 6.4.2 Administrator Capabilities
-
-Administrators shall:
-
-* Create/modify/suspend subscriptions
-* Register/deactivate members
-* Manage coach accounts
-* Assign courses
-* Generate financial reports:
-
-  * Revenue
-  * Attendance rate
-  * Usage statistics
-
----
-
-## 6.5 Notifications & Communication
-
-### 6.5.1 Automated Notifications
-
-System shall send:
-
-* Course reminders (2 hours before)
-* Goal achievement alerts
-* Personalized offers
-* Coach cancellation alerts
-
----
-
-### 6.5.2 Internal Messaging
-
-Members can:
-
-* Send messages to coaches
-* Request advice or clarifications
-
----
-
-## 6.6 Equipment Management
-
-The system shall:
-
-* Track machine operational status
-* Receive maintenance alerts from:
-
-  * Members
-  * Coaches
-* Notify administrators of issues
-
----
-
-## 6.7 Online Store
-
-Integrated e-commerce system for:
-
-* Supplements
-* Clothing
-* Fitness accessories
-
-Features:
-
-* Product listing
-* Cart
-* Checkout
-* Payment processing
-
----
-
-## 7. Non-Functional Requirements
-
-### 7.1 Performance
-
-* Support concurrent booking operations
-* Real-time updates for waiting lists
-* Low-latency dashboard rendering
-
-### 7.2 Security
-
-* Secure authentication & authorization
-* Encrypted payment handling
-* Role-based access control
-* Protection of health data
-
-### 7.3 Scalability
-
-* Support growing member base
-* Modular architecture
-
-### 7.4 Availability
-
-* 24/7 system uptime target
-* Automated backups
-
-### 7.5 Usability
-
-* Mobile-first UX
-* Responsive web design
-* Intuitive booking process
-
----
-
-## 8. Technical Stack
-
-### Frontend
-
-* Vue.js
-* HTML5
-* CSS3
-* JavaScript
-
-### Backend
-
-* Node.js
-* Express
-
-### Database
-
-* MySQL
-
-### Tools
-
-* Git & GitHub
-* Trello (Project Management)
-* draw.io (Modeling & Design)
-
----
-
-## 9. High-Level Architecture
-
-```
-Mobile App (Members)
-        |
-        | REST / API
-        v
-Backend (Node.js / Express)
-        |
-        | ORM / Queries
-        v
-MySQL Database
-        |
-        v
-Connected Devices (NFC / Sensors)
-```
-
----
-
-## 10. Risks & Constraints
-
-* Hardware integration complexity
-* Real-time synchronization challenges
-* Payment processing compliance
-* Data privacy compliance for health data
-* Enforcement of attendance policy
-
----
-
-## 11. Development Plan
-
-1. Requirements Analysis
-2. System Design
-3. Implementation
-4. Testing & Validation
-5. Final Report Documentation
-
----
-
-## 12. Success Metrics
-
-* Increase in member retention rate
-* Reduction in no-show rate
-* Subscription renewal rate
-* Revenue growth
-* Equipment downtime reduction
-
----
-
-## 13. Future Enhancements
-
-* AI-based workout recommendations
-* Wearable device integration
-* Loyalty rewards system
-* Multi-branch support
-* Advanced analytics dashboards
-
----
-
-**End of PRD – FitTech Connected Gym System**
+  * Dashboard displays statistics (donations count, food saved, CO₂ avoided).
+  * Data can be exported for analysis.
+* **User Stories:**
+
+  * As an admin, I want to export statistics to evaluate platform impact.
+
+## Sprint Configuration
+
+* **Sprint Length:** 2 weeks (15 days)
+* **Team Roles:** Project Manager, Developers, QA/Quality Manager, Designer
+* **Capacity:** ~5–7 team members
+* **Sprint 0:** Initialization (team setup, planning, technical choices, global mockup)
+* **Sprint 1:** User registration, authentication, profiles
+* **Sprint 2:** Donation publication, listing, reservation, chat
+* **Sprint 3:** Geolocation, interactive map, push notifications
+* **Sprint 4:** Gamification, reputation, security, reporting, moderation
+* **Sprint 5:** Dashboard, statistics, data export, backup
+
+## Dependencies & Edge Cases
+
+* **Dependencies:**
+
+  * Push notification services (mobile).
+  * Mapping/geolocation APIs.
+  * Secure authentication and authorization services.
+* **Edge Cases:**
+
+  * Donation expiration during reservation flow.
+  * User inactivity after reservation confirmation window.
+  * False reporting or abuse of reputation system.
 

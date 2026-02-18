@@ -1,0 +1,69 @@
+{
+  "team_id": "90121493812",
+  "workspace_id": "90121493812",
+  "folder_id": "90129476393",
+  "space_id": "90126401093",
+  "lists": {
+    "sprint_0": "901215866999",
+    "sprint_1": "901215867000",
+    "sprint_2": "901215867003",
+    "sprint_3": "901215867001",
+    "sprint_4": "901215867004",
+    "sprint_5": "901215867002"
+  },
+  "project": "Food Donation Platform",
+  "tech_stack": {
+    "backend": "NestJS with GraphQL",
+    "frontend": "React",
+    "mobile": "Flutter"
+  },
+  "tasks_created": {
+    "sprint_0": [
+      "Setup NestJS Backend Project Structure",
+      "Setup React Frontend Project Structure",
+      "Setup Flutter Mobile Project Structure",
+      "Design Database Schema",
+      "Create UI/UX Design System and Mockups"
+    ],
+    "sprint_1": [
+      "Implement User Registration with Email Verification",
+      "Implement JWT Authentication (Login/Logout/Refresh)",
+      "Implement Role-Based Access Control (RBAC)",
+      "Build User Profile Management",
+      "Create React Auth & Profile UI Components",
+      "Implement Flutter Auth & Profile Screens"
+    ],
+    "sprint_2": [
+      "Implement Donation Creation API",
+      "Build Donation Listing and Search API",
+      "Implement Reservation System with Confirmation Flow",
+      "Build Real-Time Chat System",
+      "Create React Donation UI Components",
+      "Implement Flutter Donation and Chat Screens"
+    ],
+    "sprint_3": [
+      "Implement Interactive Donation Map",
+      "Build Intelligent Matching Engine",
+      "Implement Push Notification System",
+      "Create React Map and Notification UI",
+      "Implement Flutter Map and Notifications"
+    ],
+    "sprint_4": [
+      "Implement Reputation and Gamification System",
+      "Build Reporting and Moderation System",
+      "Implement Automated Chat Moderation",
+      "Implement Food Safety Checklists",
+      "Create React Gamification and Moderation UI",
+      "Implement Flutter Gamification and Reporting"
+    ],
+    "sprint_5": [
+      "Build Analytics and Statistics API",
+      "Implement Data Export Functionality",
+      "Setup Automated Backup System",
+      "Create Admin Dashboard UI",
+      "Build Personal Impact Dashboard"
+    ]
+  },
+  "total_tasks": 28,
+  "created_at": "2026-02-18"
+}
