@@ -1,0 +1,31 @@
+{
+  "name": "@ai-orchestrator/orchestrator-server",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/main.ts",
+  "dependencies": {
+    "@ai-orchestrator/core-interfaces": "workspace:*",
+    "@ai-orchestrator/shared": "workspace:*",
+    "@ai-orchestrator/file-context-db": "workspace:*",
+    "@ai-orchestrator/nest-event-bus": "workspace:*",
+    "@ai-orchestrator/mcp-task-storage": "workspace:*",
+    "@ai-orchestrator/opencode-adapter": "workspace:*",
+    "@ai-orchestrator/shell-test-runner": "workspace:*",
+    "@ai-orchestrator/gh-pr-provider": "workspace:*",
+    "@ai-orchestrator/orchestrator": "workspace:*",
+    "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.0",
+    "@nestjs/core": "^11.0.1",
+    "@nestjs/event-emitter": "^3.1.0",
+    "@nestjs/platform-express": "^11.0.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.0",
+    "@nestjs/testing": "^11.0.1",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.7",
+    "typescript": "^5.7.3"
+  }
+}

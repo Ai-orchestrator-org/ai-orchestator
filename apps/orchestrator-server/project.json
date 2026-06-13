@@ -1,0 +1,49 @@
+{
+  "name": "orchestrator-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/orchestrator-server/src",
+  "projectType": "application",
+  "tags": ["type:app", "scope:orchestration"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outPath}"],
+      "options": {
+        "outPath": "dist/apps/orchestrator-server",
+        "tsConfig": "apps/orchestrator-server/tsconfig.app.json",
+        "main": "apps/orchestrator-server/src/main.ts"
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "orchestrator-server:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "orchestrator-server:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/orchestrator-server"],
+      "options": {
+        "jestConfig": "apps/orchestrator-server/jest.config.ts"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "tsConfig": "apps/orchestrator-server/tsconfig.app.json",
+        "noEmit": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["apps/orchestrator-server/src/**/*.ts"]
+      }
+    }
+  }
+}
