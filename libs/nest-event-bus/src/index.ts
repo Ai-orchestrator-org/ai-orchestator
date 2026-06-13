@@ -1,2 +1,2 @@
-export { NestEventBusService } from './nest-event-bus.service';
-export { NestEventBusModule } from './nest-event-bus.module';
+export { NestEventBusService } from './lib/nest-event-bus.service';
+export { NestEventBusModule } from './lib/nest-event-bus.module';

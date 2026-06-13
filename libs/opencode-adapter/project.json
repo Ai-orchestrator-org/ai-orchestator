@@ -7,9 +7,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outPath}"],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outPath": "dist/libs/opencode-adapter",
+        "outputPath": "dist/libs/opencode-adapter",
         "tsConfig": "libs/opencode-adapter/tsconfig.lib.json",
         "main": "libs/opencode-adapter/src/index.ts"
       }
@@ -24,7 +24,9 @@
     "typecheck": {
       "executor": "@nx/js:tsc",
       "options": {
+        "outputPath": "dist/libs/opencode-adapter",
         "tsConfig": "libs/opencode-adapter/tsconfig.lib.json",
+        "main": "libs/opencode-adapter/src/index.ts",
         "noEmit": true
       }
     },

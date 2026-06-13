@@ -1,2 +1,2 @@
-export { GhPrProviderService } from './gh-pr-provider.service';
-export { GhPrProviderModule } from './gh-pr-provider.module';
+export { GhPrProviderService } from './lib/gh-pr-provider.service';
+export { GhPrProviderModule } from './lib/gh-pr-provider.module';

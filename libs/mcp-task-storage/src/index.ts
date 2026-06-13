@@ -1,4 +1,4 @@
-export { McpTaskStorageService } from './mcp-task-storage.service';
-export { McpTaskStorageModule } from './mcp-task-storage.module';
-export { CLICKUP_TOOL_MAPPINGS } from './tool-mappings';
-export { parseCreateTaskResponse, parseGetTaskResponse, parseListTasksResponse, parseToolListResponse } from './response-parsers';
+export { McpTaskStorageService } from './lib/mcp-task-storage.service';
+export { McpTaskStorageModule } from './lib/mcp-task-storage.module';
+export { CLICKUP_TOOL_MAPPINGS } from './lib/tool-mappings';
+export { parseCreateTaskResponse, parseGetTaskResponse, parseListTasksResponse, parseToolListResponse } from './lib/response-parsers';

@@ -7,9 +7,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outPath}"],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outPath": "dist/libs/shared",
+        "outputPath": "dist/libs/shared",
         "tsConfig": "libs/shared/tsconfig.lib.json",
         "main": "libs/shared/src/index.ts"
       }
@@ -24,7 +24,9 @@
     "typecheck": {
       "executor": "@nx/js:tsc",
       "options": {
+        "outputPath": "dist/libs/shared",
         "tsConfig": "libs/shared/tsconfig.lib.json",
+        "main": "libs/shared/src/index.ts",
         "noEmit": true
       }
     },

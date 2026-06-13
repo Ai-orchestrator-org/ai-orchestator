@@ -7,9 +7,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outPath}"],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outPath": "dist/libs/file-context-db",
+        "outputPath": "dist/libs/file-context-db",
         "tsConfig": "libs/file-context-db/tsconfig.lib.json",
         "main": "libs/file-context-db/src/index.ts"
       }
@@ -24,7 +24,9 @@
     "typecheck": {
       "executor": "@nx/js:tsc",
       "options": {
+        "outputPath": "dist/libs/file-context-db",
         "tsConfig": "libs/file-context-db/tsconfig.lib.json",
+        "main": "libs/file-context-db/src/index.ts",
         "noEmit": true
       }
     },

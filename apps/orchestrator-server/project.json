@@ -7,9 +7,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outPath}"],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outPath": "dist/apps/orchestrator-server",
+        "outputPath": "dist/apps/orchestrator-server",
         "tsConfig": "apps/orchestrator-server/tsconfig.app.json",
         "main": "apps/orchestrator-server/src/main.ts"
       }
@@ -35,7 +35,9 @@
     "typecheck": {
       "executor": "@nx/js:tsc",
       "options": {
+        "outputPath": "dist/apps/orchestrator-server",
         "tsConfig": "apps/orchestrator-server/tsconfig.app.json",
+        "main": "apps/orchestrator-server/src/main.ts",
         "noEmit": true
       }
     },

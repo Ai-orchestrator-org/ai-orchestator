@@ -1,7 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Client } from '@modelcontextprotocol/sdk/client/index.js';
-import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamablehttp.js';
+import { Client } from '@modelcontextprotocol/sdk/client';
+import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import { TASK_STORAGE, ITaskStorage } from '@ai-orchestrator/core-interfaces';
 import { TaskCreateInput, TaskResult, TaskUpdateInput } from '@ai-orchestrator/shared';
 import { CLICKUP_TOOL_MAPPINGS } from './tool-mappings';
@@ -98,9 +98,9 @@ export class McpTaskStorageService implements ITaskStorage, OnModuleInit {
       arguments: args,
     });
 
-    const textContent = result.content
-      .filter((c) => c.type === 'text')
-      .map((c) => (c as { type: 'text'; text: string }).text)
+    const textContent = (result.content as Array<{ type: string; text?: string }>)
+      .filter((c) => c.type === 'text' && c.text)
+      .map((c) => c.text!)
       .join('\n');
 
     return textContent;

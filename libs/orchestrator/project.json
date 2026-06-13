@@ -7,9 +7,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outPath}"],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outPath": "dist/libs/orchestrator",
+        "outputPath": "dist/libs/orchestrator",
         "tsConfig": "libs/orchestrator/tsconfig.lib.json",
         "main": "libs/orchestrator/src/index.ts"
       }
@@ -24,7 +24,9 @@
     "typecheck": {
       "executor": "@nx/js:tsc",
       "options": {
+        "outputPath": "dist/libs/orchestrator",
         "tsConfig": "libs/orchestrator/tsconfig.lib.json",
+        "main": "libs/orchestrator/src/index.ts",
         "noEmit": true
       }
     },

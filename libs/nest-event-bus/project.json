@@ -7,9 +7,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outPath}"],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outPath": "dist/libs/nest-event-bus",
+        "outputPath": "dist/libs/nest-event-bus",
         "tsConfig": "libs/nest-event-bus/tsconfig.lib.json",
         "main": "libs/nest-event-bus/src/index.ts"
       }
@@ -24,7 +24,9 @@
     "typecheck": {
       "executor": "@nx/js:tsc",
       "options": {
+        "outputPath": "dist/libs/nest-event-bus",
         "tsConfig": "libs/nest-event-bus/tsconfig.lib.json",
+        "main": "libs/nest-event-bus/src/index.ts",
         "noEmit": true
       }
     },

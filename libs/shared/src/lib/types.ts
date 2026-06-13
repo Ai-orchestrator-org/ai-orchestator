@@ -1,3 +1,5 @@
+import type { TaskStatus, TaskPriority, AgentStatus } from './constants';
+
 export interface TaskId {
   id: string;
   providerId: string;

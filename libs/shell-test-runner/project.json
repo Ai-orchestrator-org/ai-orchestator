@@ -7,9 +7,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outPath}"],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outPath": "dist/libs/shell-test-runner",
+        "outputPath": "dist/libs/shell-test-runner",
         "tsConfig": "libs/shell-test-runner/tsconfig.lib.json",
         "main": "libs/shell-test-runner/src/index.ts"
       }
@@ -24,7 +24,9 @@
     "typecheck": {
       "executor": "@nx/js:tsc",
       "options": {
+        "outputPath": "dist/libs/shell-test-runner",
         "tsConfig": "libs/shell-test-runner/tsconfig.lib.json",
+        "main": "libs/shell-test-runner/src/index.ts",
         "noEmit": true
       }
     },

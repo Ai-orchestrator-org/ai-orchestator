@@ -7,9 +7,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outPath}"],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outPath": "dist/libs/mcp-task-storage",
+        "outputPath": "dist/libs/mcp-task-storage",
         "tsConfig": "libs/mcp-task-storage/tsconfig.lib.json",
         "main": "libs/mcp-task-storage/src/index.ts"
       }
@@ -24,7 +24,9 @@
     "typecheck": {
       "executor": "@nx/js:tsc",
       "options": {
+        "outputPath": "dist/libs/mcp-task-storage",
         "tsConfig": "libs/mcp-task-storage/tsconfig.lib.json",
+        "main": "libs/mcp-task-storage/src/index.ts",
         "noEmit": true
       }
     },

@@ -1,3 +1,3 @@
-export { OrchestratorService } from './orchestrator.service';
-export { OrchestratorModule } from './orchestrator.module';
-export { canTransition, getNextStates, TASK_STATE_MACHINE } from './state-machine';
+export { OrchestratorService } from './lib/orchestrator.service';
+export { OrchestratorModule } from './lib/orchestrator.module';
+export { canTransition, getNextStates, TASK_STATE_MACHINE } from './lib/state-machine';

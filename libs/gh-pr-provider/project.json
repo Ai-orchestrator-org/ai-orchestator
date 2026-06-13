@@ -7,9 +7,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outPath}"],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outPath": "dist/libs/gh-pr-provider",
+        "outputPath": "dist/libs/gh-pr-provider",
         "tsConfig": "libs/gh-pr-provider/tsconfig.lib.json",
         "main": "libs/gh-pr-provider/src/index.ts"
       }
@@ -24,7 +24,9 @@
     "typecheck": {
       "executor": "@nx/js:tsc",
       "options": {
+        "outputPath": "dist/libs/gh-pr-provider",
         "tsConfig": "libs/gh-pr-provider/tsconfig.lib.json",
+        "main": "libs/gh-pr-provider/src/index.ts",
         "noEmit": true
       }
     },

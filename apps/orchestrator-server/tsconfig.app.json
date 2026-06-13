@@ -3,8 +3,7 @@
   "compilerOptions": {
     "outDir": "../../dist/apps/orchestrator-server",
     "declaration": false,
-    "sourceMap": true,
-    "rootDir": "src"
+    "sourceMap": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]
