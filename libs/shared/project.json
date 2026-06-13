@@ -1,0 +1,38 @@
+{
+  "name": "shared",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/src",
+  "projectType": "library",
+  "tags": ["type:shared", "scope:core"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outPath}"],
+      "options": {
+        "outPath": "dist/libs/shared",
+        "tsConfig": "libs/shared/tsconfig.lib.json",
+        "main": "libs/shared/src/index.ts"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/shared"],
+      "options": {
+        "jestConfig": "libs/shared/jest.config.ts"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "tsConfig": "libs/shared/tsconfig.lib.json",
+        "noEmit": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/shared/src/**/*.ts"]
+      }
+    }
+  }
+}
