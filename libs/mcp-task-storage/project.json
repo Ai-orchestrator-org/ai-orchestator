@@ -1,0 +1,38 @@
+{
+  "name": "mcp-task-storage",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mcp-task-storage/src",
+  "projectType": "library",
+  "tags": ["type:implementation", "scope:tasks"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outPath}"],
+      "options": {
+        "outPath": "dist/libs/mcp-task-storage",
+        "tsConfig": "libs/mcp-task-storage/tsconfig.lib.json",
+        "main": "libs/mcp-task-storage/src/index.ts"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/mcp-task-storage"],
+      "options": {
+        "jestConfig": "libs/mcp-task-storage/jest.config.ts"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "tsConfig": "libs/mcp-task-storage/tsconfig.lib.json",
+        "noEmit": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/mcp-task-storage/src/**/*.ts"]
+      }
+    }
+  }
+}
