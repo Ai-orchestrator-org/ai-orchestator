@@ -1,0 +1,16 @@
+{
+  "teamId": "90121493812",
+  "spaceId": "90126401093",
+  "folderId": "90129476393",
+  "listIds": {
+    "sprint1Backlog": "90129477080",
+    "sprint1Todo": "90129478130",
+    "sprint1InProgress": "90129478138",
+    "sprint2Backlog": "90129478144",
+    "sprint2Todo": "90129478152",
+    "sprint2InProgress": "90129478158"
+  },
+  "mcpServerUrl": "http://localhost:3000/mcp",
+  "opencodeServerUrl": "http://localhost:4096",
+  "orchestratorPort": 3001
+}
