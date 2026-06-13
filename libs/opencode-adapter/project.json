@@ -1,0 +1,38 @@
+{
+  "name": "opencode-adapter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/opencode-adapter/src",
+  "projectType": "library",
+  "tags": ["type:implementation", "scope:agents"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outPath}"],
+      "options": {
+        "outPath": "dist/libs/opencode-adapter",
+        "tsConfig": "libs/opencode-adapter/tsconfig.lib.json",
+        "main": "libs/opencode-adapter/src/index.ts"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/opencode-adapter"],
+      "options": {
+        "jestConfig": "libs/opencode-adapter/jest.config.ts"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "tsConfig": "libs/opencode-adapter/tsconfig.lib.json",
+        "noEmit": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/opencode-adapter/src/**/*.ts"]
+      }
+    }
+  }
+}

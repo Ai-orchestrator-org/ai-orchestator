@@ -1,0 +1,38 @@
+{
+  "name": "shell-test-runner",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shell-test-runner/src",
+  "projectType": "library",
+  "tags": ["type:implementation", "scope:testing"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outPath}"],
+      "options": {
+        "outPath": "dist/libs/shell-test-runner",
+        "tsConfig": "libs/shell-test-runner/tsconfig.lib.json",
+        "main": "libs/shell-test-runner/src/index.ts"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/shell-test-runner"],
+      "options": {
+        "jestConfig": "libs/shell-test-runner/jest.config.ts"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "tsConfig": "libs/shell-test-runner/tsconfig.lib.json",
+        "noEmit": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/shell-test-runner/src/**/*.ts"]
+      }
+    }
+  }
+}

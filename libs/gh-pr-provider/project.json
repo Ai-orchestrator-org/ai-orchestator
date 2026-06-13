@@ -1,0 +1,38 @@
+{
+  "name": "gh-pr-provider",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/gh-pr-provider/src",
+  "projectType": "library",
+  "tags": ["type:implementation", "scope:prs"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outPath}"],
+      "options": {
+        "outPath": "dist/libs/gh-pr-provider",
+        "tsConfig": "libs/gh-pr-provider/tsconfig.lib.json",
+        "main": "libs/gh-pr-provider/src/index.ts"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/gh-pr-provider"],
+      "options": {
+        "jestConfig": "libs/gh-pr-provider/jest.config.ts"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "tsConfig": "libs/gh-pr-provider/tsconfig.lib.json",
+        "noEmit": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/gh-pr-provider/src/**/*.ts"]
+      }
+    }
+  }
+}
