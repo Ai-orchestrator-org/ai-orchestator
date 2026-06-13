@@ -1,0 +1,38 @@
+{
+  "name": "orchestrator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestrator/src",
+  "projectType": "library",
+  "tags": ["type:domain", "scope:orchestration"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outPath}"],
+      "options": {
+        "outPath": "dist/libs/orchestrator",
+        "tsConfig": "libs/orchestrator/tsconfig.lib.json",
+        "main": "libs/orchestrator/src/index.ts"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/orchestrator"],
+      "options": {
+        "jestConfig": "libs/orchestrator/jest.config.ts"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "tsConfig": "libs/orchestrator/tsconfig.lib.json",
+        "noEmit": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/orchestrator/src/**/*.ts"]
+      }
+    }
+  }
+}
