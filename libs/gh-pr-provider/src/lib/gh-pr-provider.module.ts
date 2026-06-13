@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { GhPrProviderService } from './gh-pr-provider.service';
 import { PR_PROVIDER } from '@ai-orchestrator/core-interfaces';
 
+@Global()
 @Module({
   providers: [
     {

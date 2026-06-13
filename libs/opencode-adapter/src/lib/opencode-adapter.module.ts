@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { OpencodeAdapterService } from './opencode-adapter.service';
 import { AGENT_PROVIDER } from '@ai-orchestrator/core-interfaces';
 
+@Global()
 @Module({
   providers: [
     {

@@ -1,7 +1,5 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Client } from '@modelcontextprotocol/sdk/client';
-import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import { TASK_STORAGE, ITaskStorage } from '@ai-orchestrator/core-interfaces';
 import { TaskCreateInput, TaskResult, TaskUpdateInput } from '@ai-orchestrator/shared';
 import { CLICKUP_TOOL_MAPPINGS } from './tool-mappings';
@@ -10,13 +8,25 @@ import { parseCreateTaskResponse, parseGetTaskResponse, parseListTasksResponse, 
 @Injectable()
 export class McpTaskStorageService implements ITaskStorage, OnModuleInit {
   private readonly logger = new Logger(McpTaskStorageService.name);
-  private client: Client | null = null;
+  private client: InstanceType<typeof import('@modelcontextprotocol/sdk/client').Client> | null = null;
   private connected = false;
+  private McpClientClass: (new (...args: unknown[]) => InstanceType<typeof import('@modelcontextprotocol/sdk/client').Client>) | null = null;
+  private StreamableHTTPTransportClass: (new (...args: unknown[]) => unknown) | null = null;
 
   constructor(private readonly configService: ConfigService) {}
 
   async onModuleInit(): Promise<void> {
+    await this.loadMcpModule();
     await this.connect();
+  }
+
+  private async loadMcpModule(): Promise<void> {
+    const [clientModule, transportModule] = await Promise.all([
+      import('@modelcontextprotocol/sdk/client'),
+      import('@modelcontextprotocol/sdk/client/streamableHttp.js'),
+    ]);
+    this.McpClientClass = clientModule.Client;
+    this.StreamableHTTPTransportClass = transportModule.StreamableHTTPClientTransport;
   }
 
   private async connect(): Promise<void> {
@@ -24,12 +34,16 @@ export class McpTaskStorageService implements ITaskStorage, OnModuleInit {
     this.logger.log(`Connecting to MCP server at ${mcpServerUrl}`);
 
     try {
-      this.client = new Client({
+      if (!this.McpClientClass || !this.StreamableHTTPTransportClass) {
+        throw new Error('MCP modules not loaded');
+      }
+
+      this.client = new this.McpClientClass({
         name: 'ai-orchestrator',
         version: '0.0.1',
       });
 
-      const transport = new StreamableHTTPClientTransport(new URL(mcpServerUrl));
+      const transport = new this.StreamableHTTPTransportClass!(new URL(mcpServerUrl)) as any; // eslint-disable-line @typescript-eslint/no-explicit-any
       await this.client.connect(transport);
       this.connected = true;
       this.logger.log('Connected to MCP server successfully');

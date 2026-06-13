@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { ShellTestRunnerService } from './shell-test-runner.service';
 import { TEST_RUNNER } from '@ai-orchestrator/core-interfaces';
 
+@Global()
 @Module({
   providers: [
     {

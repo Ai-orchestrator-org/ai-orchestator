@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { CONTEXT_DB, IContextDB } from '@ai-orchestrator/core-interfaces';
 import { OrchestrationConfig, ScheduleEntry, AgentTaskMapping } from '@ai-orchestrator/shared';
 
@@ -11,8 +12,8 @@ export class FileContextDbService implements IContextDB {
   private readonly logger = new Logger(FileContextDbService.name);
   private readonly baseDir: string;
 
-  constructor(baseDir: string = DEFAULT_BASE_DIR) {
-    this.baseDir = baseDir;
+  constructor(private readonly configService: ConfigService) {
+    this.baseDir = this.configService.get<string>('CONTEXT_BASE_DIR') ?? DEFAULT_BASE_DIR;
     this.ensureDirectoryExists();
   }
 

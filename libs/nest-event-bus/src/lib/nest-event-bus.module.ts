@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { NestEventBusService } from './nest-event-bus.service';
 import { EVENT_BUS } from '@ai-orchestrator/core-interfaces';
 
+@Global()
 @Module({
   imports: [
     EventEmitterModule.forRoot({
