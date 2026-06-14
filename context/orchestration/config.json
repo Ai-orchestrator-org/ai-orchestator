@@ -12,5 +12,8 @@
   },
   "mcpServerUrl": "http://localhost:3000/mcp",
   "opencodeServerUrl": "http://localhost:4096",
-  "orchestratorPort": 3001
+  "orchestratorPort": 3001,
+  "projectDirectory": "/path/to/your/project",
+  "testCommand": "pnpm test",
+  "defaultBranch": "main"
 }

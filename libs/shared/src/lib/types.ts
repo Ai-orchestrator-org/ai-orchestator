@@ -126,6 +126,9 @@ export interface OrchestrationConfig {
   mcpServerUrl: string;
   opencodeServerUrl: string;
   orchestratorPort: number;
+  projectDirectory: string;
+  testCommand: string;
+  defaultBranch: string;
 }
 
 export interface ScheduleEntry {
