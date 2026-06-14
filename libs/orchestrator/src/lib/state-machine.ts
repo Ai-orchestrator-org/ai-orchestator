@@ -6,6 +6,25 @@ export interface StateTransition {
   event: string;
 }
 
+export interface TransitionResult {
+  taskId: string;
+  from: TaskStatus;
+  to: TaskStatus;
+  event: string;
+  timestamp: string;
+}
+
+export class InvalidTransitionError extends Error {
+  constructor(
+    public readonly taskId: string,
+    public readonly from: TaskStatus,
+    public readonly to: TaskStatus,
+  ) {
+    super(`Invalid transition for task ${taskId}: ${from} → ${to}`);
+    this.name = 'InvalidTransitionError';
+  }
+}
+
 export const TASK_STATE_MACHINE: StateTransition[] = [
   { from: TaskStatus.Pending, to: TaskStatus.Ready, event: 'task.decomposed' },
   { from: TaskStatus.Pending, to: TaskStatus.Blocked, event: 'task.dependencies_unmet' },
@@ -31,4 +50,28 @@ export function getNextStates(current: TaskStatus): TaskStatus[] {
   return TASK_STATE_MACHINE
     .filter((t) => t.from === current)
     .map((t) => t.to);
+}
+
+export function getTransitionEvent(from: TaskStatus, to: TaskStatus): string | null {
+  const transition = TASK_STATE_MACHINE.find((t) => t.from === from && t.to === to);
+  return transition?.event ?? null;
+}
+
+export function transitionTask(taskId: string, from: TaskStatus, to: TaskStatus): TransitionResult {
+  if (!canTransition(from, to)) {
+    throw new InvalidTransitionError(taskId, from, to);
+  }
+
+  const event = getTransitionEvent(from, to);
+  if (!event) {
+    throw new InvalidTransitionError(taskId, from, to);
+  }
+
+  return {
+    taskId,
+    from,
+    to,
+    event,
+    timestamp: new Date().toISOString(),
+  };
 }

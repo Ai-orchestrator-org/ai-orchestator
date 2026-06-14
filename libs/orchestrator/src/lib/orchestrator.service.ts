@@ -5,8 +5,8 @@ import { CONTEXT_DB, IContextDB } from '@ai-orchestrator/core-interfaces';
 import { EVENT_BUS, IEventBus } from '@ai-orchestrator/core-interfaces';
 import { TEST_RUNNER, ITestRunner } from '@ai-orchestrator/core-interfaces';
 import { PR_PROVIDER, IPRProvider } from '@ai-orchestrator/core-interfaces';
-import { TaskStatus, AgentStatus } from '@ai-orchestrator/shared';
-import { canTransition } from './state-machine';
+import { TaskStatus } from '@ai-orchestrator/shared';
+import { TaskLifecycleService } from './task-lifecycle.service';
 
 @Injectable()
 export class OrchestratorService {
@@ -19,108 +19,42 @@ export class OrchestratorService {
     @Inject(EVENT_BUS) private readonly eventBus: IEventBus,
     @Inject(TEST_RUNNER) private readonly testRunner: ITestRunner,
     @Inject(PR_PROVIDER) private readonly prProvider: IPRProvider,
+    private readonly lifecycleService: TaskLifecycleService,
   ) {}
 
   async startTask(taskId: string): Promise<void> {
-    this.logger.log(`Starting task: ${taskId}`);
-
-    const config = await this.contextDb.getConfig();
-    const task = await this.taskStorage.getTask(taskId);
-    const sessions = await this.contextDb.getTaskSessions();
-
-    const existingSession = sessions.find(
-      (s) => s.taskId === taskId && s.status === TaskStatus.InProgress,
-    );
-    if (existingSession) {
-      this.logger.warn(`Task ${taskId} already has an active session`);
-      return;
-    }
-
-    if (!canTransition(task.status as TaskStatus, TaskStatus.InProgress)) {
-      this.logger.warn(`Cannot transition task ${taskId} from ${task.status} to in_progress`);
-      return;
-    }
-
-    const session = await this.agentProvider.createSession({
-      taskId,
-      prompt: `Implement task: ${task.name}\n\n${task.description}`,
-      workingDirectory: process.cwd(),
-    });
-
-    await this.taskStorage.updateTask(taskId, { status: TaskStatus.InProgress });
-
-    this.eventBus.emit('task.started', { taskId, agentSessionId: session.id });
-    this.logger.log(`Task ${taskId} started with agent session ${session.id}`);
+    return this.lifecycleService.startTask(taskId);
   }
 
   async reviewTask(taskId: string): Promise<void> {
-    this.logger.log(`Reviewing task: ${taskId}`);
-    // TODO: Implement review logic - run tests, check quality
+    return this.lifecycleService.reviewTask(taskId);
   }
 
   async approveTask(taskId: string): Promise<void> {
-    this.logger.log(`Approving task: ${taskId}`);
-
-    if (!canTransition(TaskStatus.Completed, TaskStatus.Approved)) {
-      this.logger.warn(`Cannot approve task ${taskId}`);
-      return;
-    }
-
-    await this.taskStorage.updateTask(taskId, { status: TaskStatus.Approved });
-    this.eventBus.emit('task.approved', { taskId });
+    return this.lifecycleService.approveTask(taskId);
   }
 
   async createPRForTask(taskId: string): Promise<void> {
-    this.logger.log(`Creating PR for task: ${taskId}`);
+    return this.lifecycleService.createPRForTask(taskId);
+  }
 
-    const task = await this.taskStorage.getTask(taskId);
-    const session = await this.contextDb.getTaskSessions();
-    const taskSession = session.find((s) => s.taskId === taskId);
+  async enqueueTasks(listId: string): Promise<number> {
+    return this.lifecycleService.enqueueTasks(listId);
+  }
 
-    if (!taskSession) {
-      this.logger.error(`No session found for task ${taskId}`);
-      return;
-    }
-
-    const diff = await this.agentProvider.getDiff(taskSession.agentSessionId);
-    const branchName = `task/${taskId}`;
-
-    const pr = await this.prProvider.createPullRequest({
-      title: `[Task ${taskId}] ${task.name}`,
-      body: `${task.description}\n\n## Changes\n\`\`\`diff\n${diff}\n\`\`\``,
-      head: branchName,
-      base: 'main',
-    });
-
-    await this.taskStorage.updateTask(taskId, { status: TaskStatus.PrCreated });
-    this.eventBus.emit('task.pr_created', { taskId, prNumber: pr.number, prUrl: pr.url });
+  async dequeueNextTask(): Promise<string | null> {
+    return this.lifecycleService.dequeueNextTask();
   }
 
   async scheduleNextTask(): Promise<string | null> {
-    this.logger.log('Scheduling next task');
-
-    const schedule = await this.contextDb.getSchedule();
-    const nextPending = schedule.find(
-      (entry) => entry.retryCount < entry.maxRetries,
-    );
-
-    if (!nextPending) {
-      this.logger.log('No pending tasks found');
-      return null;
-    }
-
-    await this.startTask(nextPending.taskId);
-    return nextPending.taskId;
+    return this.lifecycleService.dequeueNextTask();
   }
 
-  async getOrchestrationStatus(): Promise<{ pendingTasks: number; activeTasks: number; completedTasks: number }> {
-    const sessions = await this.contextDb.getTaskSessions();
-    const schedule = await this.contextDb.getSchedule();
+  async runSerialPipeline(): Promise<string | null> {
+    return this.lifecycleService.runSerialPipeline();
+  }
 
-    return {
-      pendingTasks: schedule.filter((e) => e.agentSessionId === undefined).length,
-      activeTasks: sessions.filter((s) => s.status === TaskStatus.InProgress).length,
-      completedTasks: sessions.filter((s) => s.status === TaskStatus.Done).length,
-    };
+  async getOrchestrationStatus() {
+    return this.lifecycleService.getOrchestrationStatus();
   }
 }
