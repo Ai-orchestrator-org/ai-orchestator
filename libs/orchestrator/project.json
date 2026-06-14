@@ -31,10 +31,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/orchestrator/src/**/*.ts"]
-      }
+      "command": "oxlint libs/orchestrator/src/ --tsconfig=libs/orchestrator/tsconfig.lib.json"
     }
   }
 }

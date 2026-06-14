@@ -31,10 +31,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/gh-pr-provider/src/**/*.ts"]
-      }
+      "command": "oxlint libs/gh-pr-provider/src/ --tsconfig=libs/gh-pr-provider/tsconfig.lib.json"
     }
   }
 }

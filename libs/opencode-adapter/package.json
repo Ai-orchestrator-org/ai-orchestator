@@ -4,7 +4,7 @@
   "private": true,
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
-  "dependencies": {
+"dependencies": {
     "@ai-orchestrator/core-interfaces": "workspace:*",
     "@ai-orchestrator/shared": "workspace:*",
     "@nestjs/common": "^11.0.1",

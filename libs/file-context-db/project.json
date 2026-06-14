@@ -31,10 +31,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/file-context-db/src/**/*.ts"]
-      }
+      "command": "oxlint libs/file-context-db/src/ --tsconfig=libs/file-context-db/tsconfig.lib.json"
     }
   }
 }

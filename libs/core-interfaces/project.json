@@ -31,10 +31,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/core-interfaces/src/**/*.ts"]
-      }
+      "command": "oxlint libs/core-interfaces/src/ --tsconfig=libs/core-interfaces/tsconfig.lib.json"
     }
   }
 }

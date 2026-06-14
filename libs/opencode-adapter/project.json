@@ -31,10 +31,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/opencode-adapter/src/**/*.ts"]
-      }
+      "command": "oxlint libs/opencode-adapter/src/ --tsconfig=libs/opencode-adapter/tsconfig.lib.json"
     }
   }
 }

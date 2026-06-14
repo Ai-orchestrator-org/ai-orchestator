@@ -18,7 +18,7 @@ lint:
 
 oxlint:
 	@echo "Running oxlint..."
-	oxlint apps/ libs/ --tsconfig=./tsconfig.json -c .oxlintrc.json
+	oxlint apps/ libs/
 
 typecheck:
 	@echo "Typechecking all projects..."

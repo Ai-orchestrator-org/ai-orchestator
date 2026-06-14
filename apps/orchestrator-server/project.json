@@ -42,10 +42,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["apps/orchestrator-server/src/**/*.ts"]
-      }
+      "command": "oxlint apps/orchestrator-server/src/ --tsconfig=apps/orchestrator-server/tsconfig.app.json"
     }
   }
 }

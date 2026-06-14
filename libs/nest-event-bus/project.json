@@ -31,10 +31,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/nest-event-bus/src/**/*.ts"]
-      }
+      "command": "oxlint libs/nest-event-bus/src/ --tsconfig=libs/nest-event-bus/tsconfig.lib.json"
     }
   }
 }

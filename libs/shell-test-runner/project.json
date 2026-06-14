@@ -31,10 +31,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/shell-test-runner/src/**/*.ts"]
-      }
+      "command": "oxlint libs/shell-test-runner/src/ --tsconfig=libs/shell-test-runner/tsconfig.lib.json"
     }
   }
 }

@@ -31,10 +31,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/mcp-task-storage/src/**/*.ts"]
-      }
+      "command": "oxlint libs/mcp-task-storage/src/ --tsconfig=libs/mcp-task-storage/tsconfig.lib.json"
     }
   }
 }
