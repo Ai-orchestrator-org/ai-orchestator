@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { TEST_RUNNER, ITestRunner } from '@ai-orchestrator/core-interfaces';
+import { ITestRunner } from '@ai-orchestrator/core-interfaces';
 import { TestRunInput, TestRunResult } from '@ai-orchestrator/shared';
 import { exec } from 'child_process';
 import { promisify } from 'util';

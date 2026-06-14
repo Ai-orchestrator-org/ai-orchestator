@@ -82,6 +82,7 @@ export class OpencodeAdapterService implements IAgentProvider, OnModuleInit {
 
     try {
       const sdk = await import('@opencode-ai/sdk') as { createOpencodeClient: (opts: unknown) => OpencodeClientType };
+    
       this.client = sdk.createOpencodeClient({
         baseUrl,
         directory: this.directory,
@@ -183,7 +184,7 @@ export class OpencodeAdapterService implements IAgentProvider, OnModuleInit {
     };
   }
 
-  async getSessionStatus(sessionId: string): Promise<Record<string, unknown>> {
+  async getSessionStatus(_sessionId: string): Promise<Record<string, unknown>> {
     const client = await this.ensureClient();
 
     const response = await client.session.status({

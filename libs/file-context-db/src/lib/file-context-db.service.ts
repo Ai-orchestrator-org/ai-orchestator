@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { CONTEXT_DB, IContextDB } from '@ai-orchestrator/core-interfaces';
+import { IContextDB } from '@ai-orchestrator/core-interfaces';
 import { OrchestrationConfig, ScheduleEntry, AgentTaskMapping } from '@ai-orchestrator/shared';
 
 const DEFAULT_BASE_DIR = 'context/orchestration';

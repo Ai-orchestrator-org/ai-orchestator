@@ -26,7 +26,7 @@ export class TaskController {
 
   @Get()
   async listTasks(@Query('listId') listId: string, @Query() query: Record<string, string>) {
-    const { listId: _, ...filters } = query;
+    const { listId: _listId, ...filters } = query;
     return this.taskStorage.listTasks(listId, filters);
   }
 

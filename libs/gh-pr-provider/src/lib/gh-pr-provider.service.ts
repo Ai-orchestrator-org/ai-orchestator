@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { PR_PROVIDER, IPRProvider } from '@ai-orchestrator/core-interfaces';
+import { IPRProvider } from '@ai-orchestrator/core-interfaces';
 import { PRCreateInput, PRResult } from '@ai-orchestrator/shared';
 import { exec } from 'child_process';
 import { promisify } from 'util';

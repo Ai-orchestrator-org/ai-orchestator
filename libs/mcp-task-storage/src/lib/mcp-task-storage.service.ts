@@ -1,6 +1,6 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { TASK_STORAGE, ITaskStorage } from '@ai-orchestrator/core-interfaces';
+import { ITaskStorage } from '@ai-orchestrator/core-interfaces';
 import { TaskCreateInput, TaskResult, TaskUpdateInput } from '@ai-orchestrator/shared';
 import { CLICKUP_TOOL_MAPPINGS } from './tool-mappings';
 import { parseCreateTaskResponse, parseGetTaskResponse, parseListTasksResponse, parseToolListResponse } from './response-parsers';

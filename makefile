@@ -1,4 +1,4 @@
-.PHONY: build serve test lint typecheck start-mcp clean dev dev-full
+.PHONY: build serve test lint typecheck start-mcp clean dev dev-full oxlint
 
 build:
 	@echo "Building orchestrator-server..."
@@ -15,6 +15,10 @@ test:
 lint:
 	@echo "Linting all projects..."
 	nx run-many --target=lint --all
+
+oxlint:
+	@echo "Running oxlint..."
+	oxlint apps/ libs/ --tsconfig=./tsconfig.json -c .oxlintrc.json
 
 typecheck:
 	@echo "Typechecking all projects..."

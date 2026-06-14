@@ -1,6 +1,3 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
-
 export default {
   displayName: 'mcp-task-storage',
   testEnvironment: 'node',

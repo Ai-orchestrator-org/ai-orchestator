@@ -1,6 +1,3 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
-
 export default {
   displayName: 'gh-pr-provider',
   testEnvironment: 'node',

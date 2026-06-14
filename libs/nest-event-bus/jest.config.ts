@@ -1,6 +1,3 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
-
 export default {
   displayName: 'nest-event-bus',
   testEnvironment: 'node',

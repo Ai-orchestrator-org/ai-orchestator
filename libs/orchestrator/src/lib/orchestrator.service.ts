@@ -1,26 +1,9 @@
-import { Injectable, Inject, Logger } from '@nestjs/common';
-import { TASK_STORAGE, ITaskStorage } from '@ai-orchestrator/core-interfaces';
-import { AGENT_PROVIDER, IAgentProvider } from '@ai-orchestrator/core-interfaces';
-import { CONTEXT_DB, IContextDB } from '@ai-orchestrator/core-interfaces';
-import { EVENT_BUS, IEventBus } from '@ai-orchestrator/core-interfaces';
-import { TEST_RUNNER, ITestRunner } from '@ai-orchestrator/core-interfaces';
-import { PR_PROVIDER, IPRProvider } from '@ai-orchestrator/core-interfaces';
-import { TaskStatus } from '@ai-orchestrator/shared';
+import { Injectable } from '@nestjs/common';
 import { TaskLifecycleService } from './task-lifecycle.service';
 
 @Injectable()
 export class OrchestratorService {
-  private readonly logger = new Logger(OrchestratorService.name);
-
-  constructor(
-    @Inject(TASK_STORAGE) private readonly taskStorage: ITaskStorage,
-    @Inject(AGENT_PROVIDER) private readonly agentProvider: IAgentProvider,
-    @Inject(CONTEXT_DB) private readonly contextDb: IContextDB,
-    @Inject(EVENT_BUS) private readonly eventBus: IEventBus,
-    @Inject(TEST_RUNNER) private readonly testRunner: ITestRunner,
-    @Inject(PR_PROVIDER) private readonly prProvider: IPRProvider,
-    private readonly lifecycleService: TaskLifecycleService,
-  ) {}
+  constructor(private readonly lifecycleService: TaskLifecycleService) {}
 
   async startTask(taskId: string): Promise<void> {
     return this.lifecycleService.startTask(taskId);

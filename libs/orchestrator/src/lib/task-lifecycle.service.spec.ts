@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TaskStatus, TaskPriority, AgentStatus, ScheduleEntry, AgentTaskMapping, TaskResult } from '@ai-orchestrator/shared';
-import { TASK_STORAGE, ITaskStorage } from '@ai-orchestrator/core-interfaces';
-import { AGENT_PROVIDER, IAgentProvider, AgentSessionEvent } from '@ai-orchestrator/core-interfaces';
-import { CONTEXT_DB, IContextDB } from '@ai-orchestrator/core-interfaces';
-import { EVENT_BUS, IEventBus } from '@ai-orchestrator/core-interfaces';
-import { TEST_RUNNER, ITestRunner } from '@ai-orchestrator/core-interfaces';
-import { PR_PROVIDER, IPRProvider } from '@ai-orchestrator/core-interfaces';
+import { TaskStatus, TaskPriority, AgentStatus, ScheduleEntry, TaskResult } from '@ai-orchestrator/shared';
+import { TASK_STORAGE } from '@ai-orchestrator/core-interfaces';
+import { AGENT_PROVIDER, AgentSessionEvent } from '@ai-orchestrator/core-interfaces';
+import { CONTEXT_DB } from '@ai-orchestrator/core-interfaces';
+import { EVENT_BUS } from '@ai-orchestrator/core-interfaces';
+import { TEST_RUNNER } from '@ai-orchestrator/core-interfaces';
+import { PR_PROVIDER } from '@ai-orchestrator/core-interfaces';
 import { TaskLifecycleService } from './task-lifecycle.service';
 
 describe('TaskLifecycleService', () => {

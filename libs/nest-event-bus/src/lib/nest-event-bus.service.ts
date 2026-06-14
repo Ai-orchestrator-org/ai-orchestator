@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { EVENT_BUS, IEventBus } from '@ai-orchestrator/core-interfaces';
+import { IEventBus } from '@ai-orchestrator/core-interfaces';
 
 @Injectable()
 export class NestEventBusService implements IEventBus {
